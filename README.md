@@ -408,11 +408,11 @@ class InventoryControl:
 
 ##### As seguintes verificações serão feitas:
 
-- 3.1 - Será validado se, ao executar o método `get_quantities_to_buy`, o método retorna a lista atualizada de ingredientes.
+- 3.1 - Será validado se, ao executar o método `get_quantities_to_buy`, o método retorna a informação atualizada de ingredientes necessários.
 
-- 3.2 - Será validado se, ao executar o método `get_quantities_to_buy` o método retorna toda a quantidade de ingredientes há se comprar de hamburguer.
+- 3.2 - Será validado se, ao executar o método `get_quantities_to_buy`, o método retorna os ingredientes que devem ser comprados para hamburguer.
 
-- 3.3 - Será validado se, ao executar o método `get_quantities_to_buy`, o método retorna a lista atualizada dos ingredientes que usam receitas diferentes.
+- 3.3 - Será validado se, ao executar o método `get_quantities_to_buy`, o método retorna a informação atualizada de ingredientes necessários de receitas diferentes.
 
 ### 4 - Estoque pode acabar
 
@@ -463,11 +463,11 @@ Altere o arquivo `main.py`:
 
 ##### As seguintes verificações serão feitas:
 
-- 4.1 - Será validado se, ao adicionar uma quantidade maior de ingredientes, o método retorna false
+- 4.1 - Será validado se, ao adicionar uma quantidade maior de ingredientes, o método `add_new_order` retorna false
 
 - 4.2 - Será validado se, ao executar o método `get_available_dishes`, o método retorna todos os pratos onde os pratos tem ingredientes.
 
-- 4.3 - Será validado se, ao executar o método `get_available_dishes`, não o método retorna os pratos o qual os ingredientes não sejam suficientes para prepará-los.
+- 4.3 - Será validado se, ao executar o método `get_available_dishes`, método não retorna os pratos cujos ingredientes não sejam suficientes para prepará-los.
 
 ---
 
