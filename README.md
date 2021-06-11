@@ -68,7 +68,7 @@ O projeto está estruturado em duas etapas obrigatórias, e a tarefa bônus, tam
 
 ## Data de Entrega
 
-  - Será 1 dia de projeto.
+  - Será `1` dia de projeto.
   - Data de entrega para avaliação final do projeto: `21/06/2021 - 14:00h`.
 
 ---
