@@ -21,7 +21,11 @@ class TrackOrders:
             return favorite
 
     def get_order_frequency_per_costumer(self, costumer, order):
-        pass
+        counter = 0
+        for item in self.orders:
+            if item[0] == costumer and item[1] == order:
+                counter += 1
+        return counter
 
     def get_never_ordered_per_costumer(self, costumer):
         all_meals = set()
@@ -44,7 +48,15 @@ class TrackOrders:
         return all_days.difference(client_days)
 
     def get_busiest_day(self):
-        pass
+        working_days = []
+        for day in self.orders:
+            working_days.append(day[2])
+        busiest_day = Counter(working_days).most_common(1)[0][0]
+        return busiest_day
 
     def get_least_busy_day(self):
-        pass
+        working_days = []
+        for day in self.orders:
+            working_days.append(day[2])
+        emptiest_day = Counter(working_days).most_common()[-1][0]
+        return emptiest_day
