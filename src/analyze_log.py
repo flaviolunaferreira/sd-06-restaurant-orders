@@ -9,11 +9,12 @@ def reading_csv(path_to_file):
 
 def favorite_meal(name, orders):
     client_orders = []
-    for item in orders:
-        if item[0] == name:
-            client_orders.append(item[1])
-    favorite = Counter(client_orders).most_common(1)[0][0]
-    return favorite
+    if len(orders) > 0:
+        for item in orders:
+            if item[0] == name:
+                client_orders.append(item[1])
+        favorite = Counter(client_orders).most_common(1)[0][0]
+        return favorite
 
 
 def times_ordered(name, meal, orders):
