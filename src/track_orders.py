@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 class TrackOrders:
     def __init__(self):
         self.pedidos = []
@@ -9,7 +12,12 @@ class TrackOrders:
         self.pedidos.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        pedidos_clientes = []
+        if len(self.pedidos) > 0:
+            for item in self.pedidos:
+                if item[0] == costumer:
+                    pedidos_clientes.append(item[1])
+            return Counter(pedidos_clientes).most_common(1)[0][0]
 
     def get_order_frequency_per_costumer(self, costumer, order):
         pass
