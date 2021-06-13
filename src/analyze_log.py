@@ -1,5 +1,6 @@
 import csv
-
+# How to find the max value in a dict 
+# https://www.kite.com/python/answers/how-to-find-the-max-value-in-a-dictionary-in-python#:~:text=values()%20to%20find%20the,max%20value%20of%20the%20dictionary.
 
 def read_csv(path):
     with open(path) as file:
