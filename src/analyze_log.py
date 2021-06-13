@@ -4,7 +4,7 @@ from collections import Counter
 
 def leitor_csv(path):
     if not path.endswith(".csv"):
-        raise ValueError("Arquivo inválido")
+        raise FileNotFoundError(f"No such file or directory: '{path}'")
 
     with open(path) as file:
         return list(csv.reader(file))
