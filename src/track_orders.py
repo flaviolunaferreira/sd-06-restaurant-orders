@@ -1,6 +1,9 @@
 class TrackOrders:
+    def __init__(self):
+        self.pedidos = []
+
     def __len__(self):
-        pass
+        return len(self.pedidos)
 
     def add_new_order(self, costumer, order, day):
         pass
