@@ -50,12 +50,10 @@ def dias_sem_pedido(name, days):
 
 
 def analyze_log(path_to_file):
-    resposta = ''
     data = leitor_csv(path_to_file)
     favorite = comida_favorita('maria', data)
     times = repeticoes_pedido('arnaldo', 'hamburguer', data)
     not_ordered = nunca_pedido('joao', data)
     days = dias_sem_pedido('joao', data)
-    resposta = f'{favorite}\n{times}\n{not_ordered}\n{days}'
     with open("data/mkt_campaign.txt", "w") as file:
-        file.write(resposta)
+        file.write(f'{favorite}\n{times}\n{not_ordered}\n{days}')
