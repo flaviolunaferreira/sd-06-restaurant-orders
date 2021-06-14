@@ -1,6 +1,11 @@
 class TrackOrders:
+    # [https://stackoverflow.com/questions/15114023/using-len-and-def-len-self-to-build-a-class]
+    def __init__(self):
+        self.orders = []
+
+
     def __len__(self):
-        pass
+        return len(self.orders)
 
     def add_new_order(self, costumer, order, day):
         pass
