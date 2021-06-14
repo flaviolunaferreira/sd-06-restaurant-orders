@@ -27,7 +27,7 @@ def analyze_log(path_to_file):
 
     joao_absent = find_days_away(data, "joao")
 
-    with open("../sd-06-restaurant-orders/data/mkt_campaign.txt", "w") as file:
+    with open("data/mkt_campaign.txt", "w") as file:
         file.write(maria_favorite + "\n")
         file.write(str(arnaldo_hamburguer) + "\n")
         file.write(str(not_ordered) + "\n")
