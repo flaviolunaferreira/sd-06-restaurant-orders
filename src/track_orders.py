@@ -23,10 +23,24 @@ class TrackOrders:
         pass
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        pedido_cliente = set()
+        todos_pedidos = set()
+        for item in self.pedidos:
+            todos_pedidos.add(item[1])
+        for item in self.pedidos:
+            if item[0] == costumer:
+                pedido_cliente.add(item[1])
+        return todos_pedidos.difference(pedido_cliente)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        dias_cliente = set()
+        dias = set()
+        for day in self.pedidos:
+            dias.add(day[2])
+        for client in self.pedidos:
+            if client[0] == costumer:
+                dias_cliente.add(client[2])
+        return dias.difference(dias_cliente)
 
     def get_busiest_day(self):
         pass
