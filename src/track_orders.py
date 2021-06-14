@@ -35,7 +35,14 @@ class TrackOrders:
         return comidas_existentes - pedidos_pessoa
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        dias_da_semana = set()
+        visitas_pessoa = set()
+        for nome, comida, dia in self.orders:
+            dias_da_semana.add(dia)
+            if nome == costumer:
+                visitas_pessoa.add(dia)
+
+        return dias_da_semana - visitas_pessoa
 
     def get_busiest_day(self):
         pass
