@@ -54,4 +54,10 @@ class TrackOrders:
         return max(dias_visita, key=dias_visita.get)
 
     def get_least_busy_day(self):
-        pass
+        dias_da_semana = list()
+        for nome, comida, dia in self.orders:
+            dias_da_semana.append(dia)
+
+        dias_visita = Counter(dias_da_semana)
+
+        return min(dias_visita, key=dias_visita.get)
