@@ -24,7 +24,14 @@ class TrackOrders:
         pass
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        comidas_existentes = set()
+        pedidos_pessoa = set()
+        for nome, comida, dia in self.orders:
+            comidas_existentes.add(comida)
+            if nome == costumer:
+                pedidos_pessoa.add(comida)
+
+        return comidas_existentes - pedidos_pessoa
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
