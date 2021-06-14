@@ -36,7 +36,6 @@ class TrackOrders:
 
         return every_meal.difference(ordered_by_costumer)
 
-
     def get_days_never_visited_per_costumer(self, costumer):
         days = set()
         days_costumer_visited = set()
