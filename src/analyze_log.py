@@ -56,33 +56,29 @@ def days_records(customer_name, customer_data):
 
 
 def analyze_log(path_to_file):
-    try:
-        if path_to_file.endswith(".csv"):
-            txt_output = "data/mkt_campaign.txt"
-            customer_data = create_dict(path_to_file)
-            maria_most_ordered = most_frequent_order("maria", customer_data)
-            arnaldo_orders = order_number(
-                "arnaldo", "hamburguer", customer_data
-            )
-            joao_records = order_records("joao", customer_data)
-            joao_day_records = days_records("joao", customer_data)
-            lines = [
-                f"{maria_most_ordered}\n",
-                f"{arnaldo_orders}\n",
-                f"{joao_records}\n",
-                f"{joao_day_records}",
-            ]
-            with open(txt_output, "w") as file:
-                file.writelines(lines)
-        else:
-            raise FileNotFoundError(
-                f"No such file or directory: {path_to_file}"
-            )
-
-    except FileNotFoundError:
-        print(f"No such file or directory: {path_to_file}")
+    if path_to_file.endswith(".csv"):
+        txt_output = "data/mkt_campaign.txt"
+        customer_data = create_dict(path_to_file)
+        maria_most_ordered = most_frequent_order("maria", customer_data)
+        arnaldo_orders = order_number(
+            "arnaldo", "hamburguer", customer_data
+        )
+        joao_records = order_records("joao", customer_data)
+        joao_day_records = days_records("joao", customer_data)
+        lines = [
+            f"{maria_most_ordered}\n",
+            f"{arnaldo_orders}\n",
+            f"{joao_records}\n",
+            f"{joao_day_records}",
+        ]
+        with open(txt_output, "w") as file:
+            file.writelines(lines)
+    else:
+        raise FileNotFoundError(
+            f"No such file or directory: '{path_to_file}'"
+        )
 
 
 if __name__ == "__main__":
-    path = "/home/isabella/sd-06-projects/sd-06-restaurant-orders/data/orders_1.txt"
+    path = "data/orders_3.csv"
     analyze_log(path)
