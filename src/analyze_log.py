@@ -1,6 +1,7 @@
 import csv
 from collections import Counter
 
+
 def read_csv(path_to_file):
     with open(path_to_file, "r") as file:
         return list(csv.reader(file))
