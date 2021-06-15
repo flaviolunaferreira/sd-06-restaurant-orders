@@ -55,4 +55,3 @@ def analyze_log(path_to_file):
     result = f'{favorite}\n{times}\n{not_ordered}\n{days}'
     with open("data/mkt_campaign.txt", "w") as file:
         file.write(result)
-
