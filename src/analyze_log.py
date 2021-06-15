@@ -1,3 +1,11 @@
+import csv
+
 def analyze_log(path_to_file):
-    # Código vem aqui
-    raise NotImplementedError
+    if not path_to_file.endswith(".csv"):
+        raise FileNotFoundError(f"No such file or directory: '{path_to_file}'")
+
+    with open(path_to_file) as file:
+        content = csv.reader(file)
+        orders = list(content)
+
+    
