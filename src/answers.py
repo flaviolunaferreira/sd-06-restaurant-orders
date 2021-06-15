@@ -11,7 +11,7 @@ def favorite_plate_client(data, client):
 
 
 def favorite_plate_more_order_client(data_orders, client, plate):
-    """# qtd do prato especifico por cliente"""
+    """qtd do prato especifico frequencia por cliente"""
     chosen_dish_qtd = 0
     for item in data_orders:
         if item[0] == client and item[1] == plate:
