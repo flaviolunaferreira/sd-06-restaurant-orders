@@ -39,7 +39,6 @@ def order_never_made(client, orders):
                 all_orders_joao.add(order[1])
     return all_orders.difference(all_orders_joao)
 
-      
 
 def day_never_went_rest(client, orders):
     """Quais dias 'joao' nunca foi na lanchonete?"""
@@ -56,12 +55,15 @@ def day_never_went_rest(client, orders):
 def analyze_log(path_to_file):
     if len(path_to_file) > 0:
         file = read_file_csv(path_to_file)
-        fav_order = most_ordered('maria',file)
-        arnaldo_qtd_order = str(many_ordered_by_client('arnaldo', 'hamburguer', file))
+        fav_order = most_ordered('maria', file)
+        arnaldo_qtd_order = str(
+            many_ordered_by_client('arnaldo', 'hamburguer', file)
+        )
         joao_never_order = str(order_never_made('joao', file))
         joao_never_went = str(day_never_went_rest('joao', file))
         all_campaign_info = (
-            fav_order + "\n" + arnaldo_qtd_order + "\n" + joao_never_order + "\n" + joao_never_went)
+            fav_order + "\n" + arnaldo_qtd_order +
+            "\n" + joao_never_order + "\n" + joao_never_went)
         with open('data/mkt_campaign.txt', "w") as campaign_file:
             campaign_file.write(all_campaign_info)
 
