@@ -6,6 +6,7 @@ def csv_reader(path_to_file):
     with open(path_to_file) as file:
         return list(csv.reader(file))
 
+
 def favorites(name, orders):
     client_orders = []
     for order in orders:
@@ -13,6 +14,7 @@ def favorites(name, orders):
             client_orders.append(order[1])
     favorite_counter = Counter(client_orders).most_common(1)[0][0]
     return favorite_counter
+
 
 def order_counting_ordered(name, meal, orders):
     counter = 0
@@ -42,6 +44,7 @@ def days_without_order(name, days):
         if client[0] == name:
             client_days.add(client[2])
     return all_days.difference(client_days)
+
 
 def analyze_log(path_to_file):
     result = ''
