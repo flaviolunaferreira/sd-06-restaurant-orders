@@ -17,7 +17,7 @@ class TrackOrders:
             if order[0] == costumer:
                 ordered_meals.append(order[1])
         return Counter(ordered_meals).most_common(1)[0][0]
-    
+
     def get_never_ordered_per_costumer(self, costumer):
         meals_list = set()
         client_ordered_meals = set()
