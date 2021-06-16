@@ -2,8 +2,10 @@ from collections import Counter
 
 
 class TrackOrders:
-    def __len__(self):
+    def __init__(self):
         self.orders = []
+
+    def __len__(self):
         return len(self.orders)
 
     def add_new_order(self, costumer, order, day):
@@ -50,11 +52,11 @@ class TrackOrders:
         if len(self.orders) > 0:
             for order in self.orders:
                 all_days.append(order[2])
-        return Counter(all_days[2]).most_common(2)[0][0]
+        return Counter(all_days).most_common(1)[0][0]
 
     def get_least_busy_day(self):
         all_days = []
         if len(self.orders) > 0:
             for order in self.orders:
                 all_days.append(order[2])
-        return Counter(all_days[2]).most_common(2)[-1][0]
+        return Counter(all_days).most_common()[-1][0]
