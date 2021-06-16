@@ -10,8 +10,15 @@ class TrackOrders:
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         dish_ordered = self.costumer_meals(costumer)
+        count = 0
+        most_ordered = ''
 
-        return max(set(dish_ordered), key=dish_ordered.count)
+        for dish in dish_ordered:
+            if dish_ordered.count(dish) > count:
+                count = dish_ordered.count(dish)
+                most_ordered = dish
+
+        return most_ordered
 
     def get_order_frequency_per_costumer(self, costumer, order):
         pass
@@ -40,13 +47,27 @@ class TrackOrders:
 
     def get_busiest_day(self):
         days = self.all_days()
+        count = 0
+        busiest = ''
 
-        return max(set(days), key=days.count)
+        for day in days:
+            if days.count(day) > count:
+                count = days.count(day)
+                busiest = day
+
+        return busiest
 
     def get_least_busy_day(self):
         days = self.all_days()
+        count = 1000
+        least_busy = ''
 
-        return min(set(days), key=days.count)
+        for day in days:
+            if days.count(day) < count:
+                count = days.count(day)
+                least_busy = day
+
+        return least_busy
 
     def costumer_meals(self, costumer):
         meals_list = []
