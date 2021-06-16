@@ -16,7 +16,6 @@ def main():
     topic = 'order'
     path = ""
 
-
     tracker = TrackOrders()
     control = InventoryControl()
     subs = [tracker.add_new_order, control.add_new_order]
