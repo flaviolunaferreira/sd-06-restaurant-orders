@@ -17,11 +17,11 @@ class TrackOrders:
                     costumer_orders.append(order[1])
         return Counter(costumer_orders).most_common(1)[0][0]
 
-    def get_order_frequency_per_costumer(self, costumer, order):
+    def get_order_frequency_per_costumer(self, costumer):
         count = 0
         if len(self.orders) > 0:
-            for item_order in self.orders:
-                if item_order[0] == costumer and item_order[1] == order:
+            for order in self.orders:
+                if order[0] == costumerr:
                     count += 1
             return count 
 
