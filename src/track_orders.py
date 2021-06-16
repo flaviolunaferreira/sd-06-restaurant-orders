@@ -68,10 +68,6 @@ class TrackOrders:
         food_count = wishes_by_costumer(self, costumer)
         return max(food_count, key=food_count.get)
 
-    def get_order_frequency_per_costumer(self, costumer, order):
-        food_count = wishes_by_costumer(self, costumer)
-        return food_count[order]
-
     def get_never_ordered_per_costumer(self, costumer):
         available_plates = plates(self)
         plates_client = plates_by_client(self, costumer)
