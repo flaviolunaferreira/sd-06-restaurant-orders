@@ -1,6 +1,5 @@
 from collections import Counter
 
-
 class TrackOrders:
     def __init__(self):
         self.orders = []
@@ -26,6 +25,7 @@ class TrackOrders:
             if item[0] == costumer and item[1] == order:
                 order_frequency += 1
         return order_frequency
+
 
     def get_never_ordered_per_costumer(self, costumer):
         all_meals = set()
