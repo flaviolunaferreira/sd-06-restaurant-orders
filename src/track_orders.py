@@ -38,9 +38,6 @@ class TrackOrders:
         most_ordered = Counter(analysis).most_common()[0][0]
         return most_ordered
 
-    def get_order_frequency_per_costumer(self, costumer, order):
-        pass
-
     def is_hamburguer(meal, hamburguer):
         if meal == "hamburguer":
             return hamburguer + 1
@@ -68,20 +65,12 @@ class TrackOrders:
 
         for order in orders:
             if order[0] == costumer:
-                # if order[1] == "hamburguer":
-                #     hamburguer += 1
-                # customerOrders["hamburguer"] += 1
                 hamburguer = TrackOrders.is_hamburguer(order[1], hamburguer)
-                # if order[1] == "pizza":
-                # pizza += 1
-                # customerOrders["pizza"] += 1
                 pizza = TrackOrders.is_pizza(order[1], pizza)
                 if order[1] == "coxinha":
                     coxinha += 1
-                    # customerOrders["coxinha"] += 1
                 if order[1] == "misto-quente":
                     mistoQuente += 1
-                    # customerOrders["misto-quente"] += 1
 
         customerOrders["hamburguer"] = hamburguer
         customerOrders["pizza"] = pizza
@@ -111,18 +100,13 @@ class TrackOrders:
     def track_visted_days(day_of_visit):
         customerSchedule = {
             "segunda-feira": 0,
-            # "terça-feira": 0,
             "sabado": 0,
         }
 
         if day_of_visit == "segunda-feira":
             customerSchedule["segunda-feira"] += 1
-        # if day_of_visit == "terça-feira":
-        #     customerSchedule["terça-feira"] += 1
         if day_of_visit == "sabado":
             customerSchedule["sabado"] += 1
-
-        # print
 
         return customerSchedule
 
@@ -158,7 +142,6 @@ class TrackOrders:
         workDays = {
             "segunda-feira": 0,
             "terça-feira": 0,
-            # "sabado": 0,
             "domingo": 0,
         }
 
@@ -167,8 +150,6 @@ class TrackOrders:
                 workDays["segunda-feira"] += 1
             if order[2] == "terça-feira":
                 workDays["terça-feira"] += 1
-            # if order[2] == "sabado":
-            #     workDays["sabado"] += 1
             if order[2] == "domingo":
                 workDays["domingo"] += 1
 
@@ -196,27 +177,6 @@ class TrackOrders:
             if order[2] == "domingo":
                 workDays["domingo"] += 1
 
-        # least_busy_day = {""}
-        # least_busy_day.remove("")
-
         day = TrackOrders.process_workdays(workDays.items())
 
         return day
-        # for order in workDays.items():
-        #     if int(order[1]) == 1:
-        #         return order[0]
-
-
-track_orders = TrackOrders()
-# track.get_orders()
-# print(len(track))
-track_orders.add_new_order("jorge", "frango", "domingo")
-track_orders.add_new_order("jorge", "frango", "domingo")
-track_orders.add_new_order("arnaldo", "peixe", "sábado")
-track_orders.add_new_order("maria", "carne", "sábado")
-track_orders.add_new_order("joao", "salada", "segunda-feira")
-# print(track.get_most_ordered_dish_per_costumer("jose"))
-# track.get_never_ordered_per_costumer("jose")
-# track_orders.get_busiest_day()
-# print(track_orders.get_least_busy_day())
-print(track_orders.get_days_never_visited_per_costumer("joao"))
