@@ -7,8 +7,10 @@ class TrackOrders:
     def __len__(self):
         return len(self.orders)
 
+
     def add_new_order(self, costumer, order, day):
         self.orders.append([costumer, order, day])
+
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         costumer_orders = []
@@ -27,11 +29,7 @@ class TrackOrders:
                 order_frequency += 1
         return order_frequency
 
-<<<<<<< HEAD
-
-=======
       
->>>>>>> 280272e2990beccb318da7b63cfa13b430f0434d
     def get_never_ordered_per_costumer(self, costumer):
         all_meals = set()
         ordered_meal = set()
