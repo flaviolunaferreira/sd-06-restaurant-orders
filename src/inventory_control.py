@@ -19,10 +19,20 @@ class InventoryControl:
             'frango': 50,
         }
 
+        self.control = self.minimum_inventory.copy()
+
     def add_new_order(self, costumer, order, day):
-        self.stock.append([costumer, order, day])
-        if len(self.stock) > 50:
-            return False
+        items_food = self.ingredients[order]
+        if len(self.stock) == 0:
+            self.stock.append([costumer, order, day])
+            for item in items_food:
+                self.control[item] -= 1
+        else:
+            for item in items_food:
+                self.control[item] -= 1
+                if self.control[item] < 0:
+                    return False
+            self.stock.append([costumer, order, day])
 
     def get_quantities_to_buy(self):
         total_ingredients = self.minimum_inventory.copy()
@@ -35,19 +45,17 @@ class InventoryControl:
         return total_ingredients
 
     def get_available_dishes(self):
-        foods_finished = set()
-        set_foods = set(self.ingredients)
         items_used = self.get_quantities_to_buy()
-        inventory = self.minimum_inventory.copy()
+        inventory = self.minimum_inventory
+
+        set_foods = set(self.ingredients)
+        items_finished = set()
+
         for item in items_used:
             if inventory[item] <= items_used[item]:
-                inventory[item] = 0
-                foods_finished.add(item)
-            else:
-                inventory[item] -= items_used[item]
-
+                items_finished.add(item)
         for item in self.ingredients:
-            set_contain = foods_finished.isdisjoint(self.ingredients[item])
+            set_contain = items_finished.isdisjoint(self.ingredients[item])
             if item in set_foods and not set_contain:
                 set_foods.remove(item)
         return set_foods
@@ -55,7 +63,8 @@ class InventoryControl:
 # inventory = InventoryControl()
 # count = 1
 # while count <= 50:
-#     inventory.add_new_order("maria", "coxinha", "quarta-feira")
+#     inventory.add_new_order("maria", "hamburguer", "sexta")
+#     inventory.add_new_order("maria", "coxinha", "sexta")
+#     inventory.add_new_order("maria", "misto-quente", "sexta")
+#     print(inventory.add_new_order("maria", "coxinha", "sexta"))
 #     count += 1
-# result = inventory.get_available_dishes()
-# print(result)
