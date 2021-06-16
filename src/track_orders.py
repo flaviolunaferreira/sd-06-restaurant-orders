@@ -38,9 +38,6 @@ class TrackOrders:
         most_ordered = Counter(analysis).most_common()[0][0]
         return most_ordered
 
-    def get_order_frequency_per_costumer(self, costumer, order):
-        pass
-
     def is_hamburguer(meal, hamburguer):
         if meal == "hamburguer":
             return hamburguer + 1
