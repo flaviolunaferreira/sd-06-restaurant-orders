@@ -1,5 +1,5 @@
-import csv
 from collections import Counter
+
 
 class TrackOrders:
     def __init__(self):
@@ -8,21 +8,23 @@ class TrackOrders:
     def __len__(self):
         return len(self.orders)
 
-    # def get_orders(self):
-    #     with open("../data/orders_1.csv") as csvfile:
-    #         csv_reader = csv.reader(csvfile, delimiter=',')
-    #         orders = []
-    #         for row in csv_reader:
-    #             orders.append(row)
-
-            # print(orders)
-            # return orders
-
     def add_new_order(self, costumer, order, day):
         self.orders.append([costumer, order, day])
 
+    def track_meal_quantity(meal, ordersAnalyzed):
+        if meal == "hamburguer":
+            ordersAnalyzed["hamburguer"] += 1
+        if meal == "pizza":
+            ordersAnalyzed["pizza"] += 1
+        if meal == "coxinha":
+            ordersAnalyzed["coxinha"] += 1
+        if meal == "misto-quente":
+            ordersAnalyzed["misto-quente"] += 1
+
+        return ordersAnalyzed
+
     def get_most_ordered_dish_per_costumer(self, costumer):
-        ordersAnalyzed = {
+        analysis = {
             "hamburguer": 0,
             "pizza": 0,
             "coxinha": 0,
@@ -31,88 +33,190 @@ class TrackOrders:
 
         for order in self.orders:
             if order[0] == costumer:
-                if order[1] == "hamburguer":
-                    ordersAnalyzed["hamburguer"] += 1
-                    continue
-                if order[1] == "pizza":
-                    ordersAnalyzed["pizza"] += 1
-                    continue
-                if order[1] == "coxinha":
-                    ordersAnalyzed["coxinha"] += 1
-                    continue
-                if order[1] == "misto-quente":
-                    ordersAnalyzed["misto-quente"] += 1
+                analysis = TrackOrders.track_meal_quantity(order[0], analysis)
 
-        most_ordered = Counter(ordersAnalyzed).most_common()[0][0]
+        most_ordered = Counter(analysis).most_common()[0][0]
         return most_ordered
 
     def get_order_frequency_per_costumer(self, costumer, order):
         pass
 
-    def get_never_ordered_per_costumer(self, costumer):
-        customerOders = {
+    def is_hamburguer(meal, hamburguer):
+        if meal == "hamburguer":
+            return hamburguer + 1
+        else:
+            return hamburguer
+
+    def is_pizza(meal, pizza):
+        if meal == "pizza":
+            return pizza + 1
+        else:
+            return pizza
+
+    def process_orders(orders, costumer):
+        customerOrders = {
             "hamburguer": 0,
             "pizza": 0,
             "coxinha": 0,
             "misto-quente": 0,
         }
 
-        for order in self.orders:
+        hamburguer = 0
+        pizza = 0
+        coxinha = 0
+        mistoQuente = 0
+
+        for order in orders:
             if order[0] == costumer:
-                if order[1] == "hamburguer":
-                    customerOders["hamburguer"] += 1
-                if order[1] == "pizza":
-                    customerOders["pizza"] += 1
+                # if order[1] == "hamburguer":
+                #     hamburguer += 1
+                # customerOrders["hamburguer"] += 1
+                hamburguer = TrackOrders.is_hamburguer(order[1], hamburguer)
+                # if order[1] == "pizza":
+                # pizza += 1
+                # customerOrders["pizza"] += 1
+                pizza = TrackOrders.is_pizza(order[1], pizza)
                 if order[1] == "coxinha":
-                    customerOders["coxinha"] += 1
+                    coxinha += 1
+                    # customerOrders["coxinha"] += 1
                 if order[1] == "misto-quente":
-                    customerOders["misto-quente"] += 1
+                    mistoQuente += 1
+                    # customerOrders["misto-quente"] += 1
+
+        customerOrders["hamburguer"] = hamburguer
+        customerOrders["pizza"] = pizza
+        customerOrders["coxinha"] = coxinha
+        customerOrders["misto-quente"] = mistoQuente
 
         customerOrdersToString = (
-            str(customerOders).replace("{", "").replace("}", "").split(",")
+            str(customerOrders).replace("{", "").replace("}", "").split(",")
         )
 
-        # customerNeverOrdered = []
+        return customerOrdersToString
 
-        # for order in customerOrdersToString:
-        #     analysis = order.strip().split(" ")
-        #     if int(analysis[1]) == 0:
-        #         customerNeverOrdered.append(
-        #             "'"
-        #             + analysis[0]
-        #             .replace("'", "")
-        #             .replace("'", "")
-        #             .replace(":", "")
-        #             + "'"
-        #         )
-
+    def get_never_ordered_per_costumer(self, costumer):
+        orders = TrackOrders.process_orders(self.orders, costumer)
         customerNeverOrdered = {""}
         customerNeverOrdered.remove("")
 
-        for order in customerOrdersToString:
-            # print(order)
+        for order in orders:
             analysis = order.strip().split(" ")
             if int(analysis[1]) == 0:
-                customerNeverOrdered.add(analysis[0].replace(":", "").replace("'", ""))
+                customerNeverOrdered.add(
+                    analysis[0].replace(":", "").replace("'", "")
+                )
 
-        print(customerNeverOrdered)
-        # return "{" + ", ".join(customerNeverOrdered) + "}\n"
         return customerNeverOrdered
 
+    def track_visted_days(day_of_visit):
+        customerSchedule = {
+            "segunda-feira": 0,
+            # "terça-feira": 0,
+            "sabado": 0,
+        }
+
+        if day_of_visit == "segunda-feira":
+            customerSchedule["segunda-feira"] += 1
+        # if day_of_visit == "terça-feira":
+        #     customerSchedule["terça-feira"] += 1
+        if day_of_visit == "sabado":
+            customerSchedule["sabado"] += 1
+
+        # print
+
+        return customerSchedule
+
+    def process_visited_days(orders, costumer):
+        result = {}
+
+        for order in orders:
+            if order[0] == costumer:
+                result = TrackOrders.track_visted_days(order[0])
+
+        customersScheduleToString = (
+            str(result).replace("{", "").replace("}", "").split(",")
+        )
+
+        return customersScheduleToString
+
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        schedule = TrackOrders.process_visited_days(self.orders, costumer)
+
+        daysCustomerNeverWentThere = {""}
+        daysCustomerNeverWentThere.remove("")
+
+        for order in schedule:
+            analysis = order.strip().split(" ")
+            if int(analysis[1]) == 0:
+                daysCustomerNeverWentThere.add(
+                    analysis[0].replace(":", "").replace("'", "")
+                )
+
+        return daysCustomerNeverWentThere
 
     def get_busiest_day(self):
-        pass
+        workDays = {
+            "segunda-feira": 0,
+            "terça-feira": 0,
+            # "sabado": 0,
+            "domingo": 0,
+        }
+
+        for order in self.orders:
+            if order[2] == "segunda-feira":
+                workDays["segunda-feira"] += 1
+            if order[2] == "terça-feira":
+                workDays["terça-feira"] += 1
+            # if order[2] == "sabado":
+            #     workDays["sabado"] += 1
+            if order[2] == "domingo":
+                workDays["domingo"] += 1
+
+        busiest_day = Counter(workDays).most_common()[0][0]
+        return busiest_day
+
+    def process_workdays(list_of_days):
+        for order in list_of_days:
+            if int(order[1]) == 1:
+                return order[0]
 
     def get_least_busy_day(self):
-        pass
+        workDays = {
+            "segunda-feira": 0,
+            "terça-feira": 0,
+            "sabado": 0,
+            "domingo": 0,
+        }
 
-track = TrackOrders()
+        for order in self.orders:
+            if order[2] == "segunda-feira":
+                workDays["segunda-feira"] += 1
+            if order[2] == "sabado":
+                workDays["sabado"] += 1
+            if order[2] == "domingo":
+                workDays["domingo"] += 1
+
+        # least_busy_day = {""}
+        # least_busy_day.remove("")
+
+        day = TrackOrders.process_workdays(workDays.items())
+
+        return day
+        # for order in workDays.items():
+        #     if int(order[1]) == 1:
+        #         return order[0]
+
+
+track_orders = TrackOrders()
 # track.get_orders()
 # print(len(track))
-track.add_new_order("maria", "pizza", "domingo")
-track.add_new_order("jose", "pizza", "domingo")
-track.add_new_order("jose", "pizza", "domingo")
+track_orders.add_new_order("jorge", "frango", "domingo")
+track_orders.add_new_order("jorge", "frango", "domingo")
+track_orders.add_new_order("arnaldo", "peixe", "sábado")
+track_orders.add_new_order("maria", "carne", "sábado")
+track_orders.add_new_order("joao", "salada", "segunda-feira")
 # print(track.get_most_ordered_dish_per_costumer("jose"))
-track.get_never_ordered_per_costumer("jose")
+# track.get_never_ordered_per_costumer("jose")
+# track_orders.get_busiest_day()
+# print(track_orders.get_least_busy_day())
+print(track_orders.get_days_never_visited_per_costumer("joao"))
