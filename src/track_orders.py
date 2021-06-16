@@ -20,6 +20,7 @@ class TrackOrders:
             favorite = Counter(costumer_orders).most_common(1)[0][0]
             return favorite
 
+
     def get_order_frequency_per_costumer(self, costumer, order):
         order_frequency = 0
         for item in self.orders:
@@ -27,6 +28,7 @@ class TrackOrders:
                 order_frequency += 1
         return order_frequency
 
+      
     def get_never_ordered_per_costumer(self, costumer):
         all_meals = set()
         ordered_meal = set()
