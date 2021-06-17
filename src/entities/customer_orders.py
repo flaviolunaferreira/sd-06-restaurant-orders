@@ -1,14 +1,4 @@
 class CustomerOrders:
-    DAYS_OF_THE_WEEK = {
-        "segunda-feira",
-        "terça-feira",
-        "quarta-feira",
-        "quinta-feira",
-        "sexta-feira",
-        "sábado",
-        "domingo",
-    }
-
     def __init__(self, name, orders):
         self._name = name
         self._orders = self.extract_orders(orders)
@@ -45,6 +35,6 @@ class CustomerOrders:
         ordered_dishes = {order[0] for order in self._orders}
         return menu - ordered_dishes
 
-    def days_never_visited(self):
+    def days_never_visited(self, work_days):
         visited_days = {order[1] for order in self._orders}
-        return self.DAYS_OF_THE_WEEK - visited_days
+        return work_days - visited_days

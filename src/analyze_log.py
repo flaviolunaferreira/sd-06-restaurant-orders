@@ -1,6 +1,6 @@
 import csv
-from menu import Menu
-from customer_orders import CustomerOrders
+from .entities.restaurant import Restaurant
+from .entities.customer_orders import CustomerOrders
 
 
 def write_csv_to_file(path_to_file, analyzed_log):
@@ -21,7 +21,7 @@ def analyze_log(path_to_file):
     except FileNotFoundError:
         raise FileNotFoundError(f"No such file or directory: {path_to_file}")
 
-    menu_items = Menu(orders).get_items()
+    restaurant = Restaurant(orders)
 
     arnaldo_orders = CustomerOrders("arnaldo", orders)
     maria_orders = CustomerOrders("maria", orders)
@@ -31,8 +31,10 @@ def analyze_log(path_to_file):
     arnaldos_hamburguer_total = arnaldo_orders.product_total_orders(
         "hamburguer"
     )
-    joao_nevers_ordered = joao_orders.never_ordered_dish(menu_items)
-    joao_nevers_went_on = joao_orders.days_never_visited()
+    joao_nevers_ordered = joao_orders.never_ordered_dish(restaurant.get_menu())
+    joao_nevers_went_on = joao_orders.days_never_visited(
+        restaurant.get_work_days()
+    )
 
     analyzed_log.append(marias_most_ordered_dish)
     analyzed_log.append(arnaldos_hamburguer_total)
