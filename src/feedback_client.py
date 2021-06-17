@@ -10,7 +10,7 @@ def favorite_food_client(data, client):
     return favorite_food
 
 
-def how_many_orders_client(data_orders, client, plate):
+def how_many_orders_cli(data_orders, client, plate):
     """Quantas vezes 'arnaldo' pediu 'hamburguer'?"""
     orders_client_qtd = 0
     for item in data_orders:
