@@ -1,15 +1,14 @@
 class TrackOrders:
     def __init__(self):
         self.orders = []
-        self.all_clients = None
-        self.all_meals = None
-        self.all_days = None
 
     def __len__(self):
         return len(self.orders)
 
     def get_order_by_name(self, name):
-        return [l["order"] for l in self.orders if l["name"] == name]
+        return [
+            order["order"] for order in self.orders if order["name"] == name
+        ]
 
     def add_new_order(self, costumer, order, day):
         self.orders.append({"name": costumer, "order": order, "day": day})
@@ -20,11 +19,13 @@ class TrackOrders:
 
     def get_never_ordered_per_costumer(self, costumer):
         result = set(self.get_order_by_name(costumer))
-        return {l["order"] for l in self.orders}.difference(result)
+        return {order["order"] for order in self.orders}.difference(result)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        result = [l["day"] for l in self.orders if l["name"] == costumer]
-        return {l["day"] for l in self.orders}.difference(result)
+        result = [
+            order["day"] for order in self.orders if order["name"] == costumer
+        ]
+        return {order["day"] for order in self.orders}.difference(result)
 
     def get_busiest_day(self):
         pass
