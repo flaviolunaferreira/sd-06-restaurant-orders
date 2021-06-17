@@ -1,6 +1,6 @@
 import csv
-from .entities.restaurant import Restaurant
-from .entities.customer_orders import CustomerOrders
+from entities.restaurant import Restaurant
+from entities.customer_orders import CustomerOrders
 
 
 def write_csv_to_file(path_to_file, analyzed_log):
