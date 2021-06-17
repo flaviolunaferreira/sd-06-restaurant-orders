@@ -10,11 +10,11 @@ class TrackOrders:
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         orders = {}
-        for request in self.orders:
-            if request['costumer'] == costumer and request['order'] not in orders:
-                orders[request['order']] = 1
-            elif request['costumer'] == costumer:
-                orders[request['order']] += 1
+        for req in self.orders:
+            if req['costumer'] == costumer and req['order'] not in orders:
+                orders[req['order']] = 1
+            elif req['costumer'] == costumer:
+                orders[req['order']] += 1
         return max(orders, key=orders.get)
 
     def get_order_frequency_per_costumer(self, costumer, order):
