@@ -4,7 +4,8 @@ class TrackOrders:
 
 
     def __len__(self):
-        pass
+        return len(self.orders)
+        
 
     def add_new_order(self, costumer, order, day):
         pass
