@@ -23,6 +23,25 @@ def most_maria(list_orders):
     return dish_maria_most_frequent
 
 
+def count_arnaldo(list_orders):
+    count_arnaldo_hamburguer = 0
+    for order in list_orders:
+        if order["client"] == "arnaldo" and order["dish"] == "hamburguer":
+            count_arnaldo_hamburguer += 1
+    return count_arnaldo_hamburguer
+
+
+def diffs_sets_joao(list_orders, key):
+    keys_set_all = set()
+    keys_set_joao = set()
+    for order in list_orders:
+        keys_set_all.add(order[key])
+        if order["client"] == "joao":
+            keys_set_joao.add(order[key])
+    diffs = keys_set_all.difference(keys_set_joao)
+    return diffs
+
+
 def analyze_log(path_to_file):
     with open(path_to_file) as orders_file:
         data = csv.reader(orders_file, delimiter=",")
@@ -31,9 +50,13 @@ def analyze_log(path_to_file):
             list_orders.append(
                 {"client": row[0], "dish": row[1], "day": row[2]}
             )
-
         track_orders_file = open("../data/mkt_campaign.txt", mode="w")
-        all_write_track_orders = [f"{most_maria(list_orders)}\n"]
+        all_write_track_orders = [
+            f"{most_maria(list_orders)}\n",
+            f"{count_arnaldo(list_orders)}\n",
+            f"{diffs_sets_joao(list_orders, 'dish')}\n",
+            f"{diffs_sets_joao(list_orders, 'day')}"
+        ]
         track_orders_file.writelines(all_write_track_orders)
         track_orders_file.close()
 
