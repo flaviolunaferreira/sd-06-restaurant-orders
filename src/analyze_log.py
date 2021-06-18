@@ -43,22 +43,19 @@ def diffs_sets_joao(list_orders, key):
 
 
 def analyze_log(path_to_file):
-    with open(path_to_file) as orders_file:
+    with open(path_to_file, "r") as orders_file:
         data = csv.reader(orders_file, delimiter=",")
         list_orders = []
         for row in data:
             list_orders.append(
                 {"client": row[0], "dish": row[1], "day": row[2]}
             )
-        track_orders_file = open("../data/mkt_campaign.txt", mode="w")
-        all_write_track_orders = [
+
+    with open("data/mkt_campaign.txt", "w") as mkt_file:
+        all_write_analyze_log = [
             f"{most_maria(list_orders)}\n",
             f"{count_arnaldo(list_orders)}\n",
             f"{diffs_sets_joao(list_orders, 'dish')}\n",
-            f"{diffs_sets_joao(list_orders, 'day')}"
+            f"{diffs_sets_joao(list_orders, 'day')}",
         ]
-        track_orders_file.writelines(all_write_track_orders)
-        track_orders_file.close()
-
-
-analyze_log("../data/orders_1.csv")
+        mkt_file.writelines(all_write_analyze_log)
