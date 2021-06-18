@@ -1,4 +1,8 @@
 class TrackOrders:
+    def __init__(self):
+        self.orders = []
+
+
     def __len__(self):
         pass
 
