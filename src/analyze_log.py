@@ -55,29 +55,29 @@ def sets_diff_per_client(data, key, client):
     return diffs
 
 
-def count_days(list_orders):
+def get_days(list_orders):
     list_days = []
-    dict_count_days = {}
     for order in list_orders:
         list_days.append(order["day"])
+    return list_days
+
+
+def max_min_days(data):
+    list_orders = list_orders_tranform(data)
+    list_days = get_days(list_orders)
+    most_frequent = list_days[0]
+    less_frequent = list_days[0]
+    dict_count_days = {}
     for day in list_days:
         if day not in dict_count_days:
             dict_count_days[day] = 1
         else:
             dict_count_days[day] += 1
-    return dict_count_days
-
-
-def busiest_days(data):
-    list_orders = list_orders_tranform(data)
-    max_day = max(count_days(list_orders))
-    return max_day
-
-
-def less_busy_days(data):
-    list_orders = list_orders_tranform(data)
-    min_days = min(count_days(list_orders))
-    return min_days
+        if dict_count_days[day] > dict_count_days[most_frequent]:
+            most_frequent = day
+        if dict_count_days[day] < dict_count_days[less_frequent]:
+            less_frequent = day
+    return [most_frequent, less_frequent]
 
 
 def analyze_log(path_to_file):
