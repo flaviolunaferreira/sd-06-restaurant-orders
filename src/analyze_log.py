@@ -47,13 +47,13 @@ def days_without_order(name, days):
 
 
 def analyze_log(path_to_file):
-    results = ''
+    result = ''
     data = csv_reader(path_to_file)
     favorite = favorites('maria', data)
     times = order_times_ordered('arnaldo', 'hamburguer', data)
     not_ord = not_ordered('joao', data)
     days = days_without_order('joao', data)
-    results = f'{favorite}\n{times}\n{not_ord}\n{days}'
-    f = open("data/mkt_campaign.txt", 'w')
-    f.write(results)
+    result = f'{favorite}\n{times}\n{not_ord}\n{days}'
+    f = open("data/mkt_campaign.txt", "w")
+    f.write(result)
     f.close()
