@@ -23,18 +23,15 @@ class TrackOrders:
         return max(order_by_costumer, key=order_by_costumer.get)
 
     def get_never_ordered_per_costumer(self, costumer):
-        order_by_costumer = {}
+        every_meal = set()
+        ordered_by_costumer = set()
 
         for order in self.orders:
-            if (
-                order["costumer"] == costumer
-                and order["order"] not in order_by_costumer
-            ):
-                order_by_costumer[order["order"]] = 1
-            elif order["costumer"] == costumer:
-                order_by_costumer[order["order"]] += 1
+            if order["costumer"] == costumer:
+                ordered_by_costumer.add(order["order"])
+            every_meal.add(order["order"])
 
-        return max(order_by_costumer, key=order_by_costumer.get)
+        return every_meal.difference(ordered_by_costumer)
 
     def get_days_never_visited_per_costumer(self, costumer):
         days = set()
