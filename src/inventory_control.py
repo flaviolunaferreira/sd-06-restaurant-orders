@@ -48,4 +48,4 @@ class InventoryControl:
             set_contain = foods_finished.isdisjoint(self.ingredients[item])
             if item in set_foods and not set_contain:
                 set_foods.remove(item)
-        return set_foods 
+        return set_foods

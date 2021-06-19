@@ -14,4 +14,3 @@ def analyze_log(path_to_file):
     file_txt = open("data/mkt_campaign.txt", mode="w")
     file_txt.writelines(response)
     file_txt.close()
-    
