@@ -14,7 +14,7 @@ class TrackOrders:
         for order in self.orders:
             if (
                 order["costumer"] == costumer
-                and order["order"] == order_by_costumer
+                and order["order"] not in order_by_costumer
             ):
                 order_by_costumer[order["order"]] = 1
             elif order["costumer"] == costumer:
