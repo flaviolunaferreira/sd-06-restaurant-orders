@@ -1,4 +1,4 @@
-from src.aux.csv import csv as reader_csv
+from src.aux.csv_read import reader_csv
 from src.aux.favorite import favorite as favorite_food
 from src.aux.quantity_product import quantity_products as qtd_products
 from src.aux.aux_date import aux_date as data
@@ -14,4 +14,3 @@ def analyze_log(path_to_file):
     file_txt = open("data/mkt_campaign.txt", mode="w")
     file_txt.writelines(analized_res)
     file_txt.close()
-
