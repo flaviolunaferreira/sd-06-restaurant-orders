@@ -15,4 +15,3 @@ def analyze_log(path_to_file):
     file_txt.writelines(analized_res)
     file_txt.close()
 
-# print(analyze_log("data/orders_1.csv"))
