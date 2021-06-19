@@ -55,6 +55,3 @@ def analyze_log(path_to_file):
         file.write(f"{arnaldo_request}\n")
         file.write(f"{joao_request}\n")
         file.write(f"{joao_frequence}\n")
-
-
-# print()
