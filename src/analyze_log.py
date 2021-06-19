@@ -19,7 +19,7 @@ def csv_to_dict(file_to_read):
         reader = csv.reader(file)
         restaurant_data = [{
             "name": row[0],
-            "food": row[1],
+            "order": row[1],
             "day": row[2]
         } for row in reader]
         return restaurant_data
@@ -29,7 +29,7 @@ def get_person_food_data(person_name, data_file):
     person_data = []
     for data in data_file:
         if data["name"] == person_name:
-            person_data.append(data["food"])
+            person_data.append(data["order"])
     return person_data
 
 
