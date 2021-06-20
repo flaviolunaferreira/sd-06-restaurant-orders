@@ -47,6 +47,21 @@ def never_asked_meal(name, orders, type):
     return all_types.difference(client_fav_type)
 
 
+def get_days_by_client(name, orders):
+    days_by_client_name = [
+        order['dia']
+        for order in orders
+        if order['nome'] == name
+    ]
+    return days_by_client_name
+
+
+def never_went_to(name, orders, day):
+    all_days = set([data[day] for data in orders])
+    client_fav_days = set(never_went_to(name, orders))
+    return all_days.difference(client_fav_days)
+
+
 def analyze_log(path_to_file):
 
     all_orders = csv_data(path_to_file)
@@ -56,3 +71,4 @@ def analyze_log(path_to_file):
     asd += str(favorite_meal("maria", all_orders)) + "\n"
     asd += str(qty_by_meal("arnaldo", all_orders, "hamburguer")) + "\n"
     asd += str(never_asked_meal("joao", all_orders, "comida")) + "\n"
+    asd += str(never_went_to("joao", all_orders, "dia")) + "\n"
