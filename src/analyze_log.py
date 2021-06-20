@@ -35,14 +35,14 @@ def never_ordered(client, orders):
 
 
 def days_unordered(client, orders):
-    week_days = set()
+    days = set()
     ordered_days = set()
     for i in orders:
-        week_days.add(i[2])
+        days.add(i[2])
     for i in orders:
         if i[0] == client:
             ordered_days.add(i[2])
-    return week_days.difference(ordered_days)
+    return days.difference(ordered_days)
 
 
 def analyze_log(path_to_file):
