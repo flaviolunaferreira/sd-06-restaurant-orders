@@ -11,26 +11,38 @@ def convert_to_dict(path_to_file):
 
 
 def most_frequent_order(client_name, clients_data):
-    client_order = [client['order'] for client in clients_data if client['name'] == client_name]
+    client_order = [
+        client['order'] for client
+        in clients_data if client['name'] == client_name
+    ]
     ordered_times = Counter(client_order)
     return ordered_times.most_common(1)[0][0]
 
 
 def ordered_times(client_name, clients_data, menu_item):
-    client_order = [client['order'] for client in clients_data if client['name'] == client_name]
+    client_order = [
+        client['order'] for client
+        in clients_data if client['name'] == client_name
+    ]
     ordered_times = Counter(client_order)
     return ordered_times.get(menu_item)
 
 
 def never_orderd(client_name, clients_data):
     orders_set = {client['order'] for client in clients_data}
-    orders_by_client = {client['order'] for client in clients_data if client['name'] == client_name}
+    orders_by_client = {
+        client['order'] for client
+        in clients_data if client['name'] == client_name
+    }
     return orders_set.symmetric_difference(orders_by_client)
 
 
 def never_show_day(client_name, clients_data):
     days_set = {client['day'] for client in clients_data}
-    days_by_client = {client['day'] for client in clients_data if client['name'] == client_name}
+    days_by_client = {
+        client['day'] for client
+        in clients_data if client['name'] == client_name
+    }
     return days_set.symmetric_difference(days_by_client)
 
 
