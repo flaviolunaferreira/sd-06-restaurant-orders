@@ -1,6 +1,5 @@
 import csv
 from collections import Counter
-from os import path
 
 
 def convert_to_dict(path_to_file):
