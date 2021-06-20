@@ -2,6 +2,7 @@ from collections import Counter
 
 
 class TrackOrders:
+
     def __init__(self):
         self.orders = []
 
@@ -12,12 +13,15 @@ class TrackOrders:
         self.orders.append({"name": costumer, "order": order, "day": day})
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        if len(self.orders) > 0:
-            c_orders = []
-            for item in self.orders:
-                if item[0] == costumer:
-                    c_orders.append(item[1])
-            return Counter(c_orders).most_common(1)[0][0]
+        orders = [
+            customer["order"]
+            for customer in self.orders
+            if customer["name"] == costumer
+        ]
+        custumer_count = Counter(orders)
+        most_ordered_dish = custumer_count.most_common(1)[0][0]
+
+        return most_ordered_dish
 
     def get_never_ordered_per_costumer(self, costumer):
         meals_data = {customer["order"] for customer in self.orders}
