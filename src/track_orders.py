@@ -17,9 +17,6 @@ class TrackOrders:
     def get_most_ordered_dish_per_costumer(self, costumer):
         return log.more_request(self.orders, costumer)
 
-    def get_order_frequency_per_costumer(self, costumer, order):
-        return log.order_quantity(self.orders, order, costumer)
-
     def get_never_ordered_per_costumer(self, costumer):
         return log.never_order(self.orders, costumer)
 
