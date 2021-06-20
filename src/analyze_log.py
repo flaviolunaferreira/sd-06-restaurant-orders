@@ -44,6 +44,7 @@ def days_unordered(client, orders):
             client_ordered_days.add(order[2])
     return week_days.difference(client_ordered_days)
 
+
 def analyze_log(path_to_file):
     orders = csv_reader(path_to_file)
     client_favorite_meal = favorite_meal('maria', orders)
