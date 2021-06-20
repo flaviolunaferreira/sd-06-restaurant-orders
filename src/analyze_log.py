@@ -72,3 +72,6 @@ def analyze_log(path_to_file):
     asd += str(qty_by_meal("arnaldo", all_orders, "hamburguer")) + "\n"
     asd += str(never_asked_meal("joao", all_orders, "comida")) + "\n"
     asd += str(never_went_to("joao", all_orders, "dia")) + "\n"
+
+    with open("data/mkt_campaign.txt", "w") as file:
+        file.write(asd)
