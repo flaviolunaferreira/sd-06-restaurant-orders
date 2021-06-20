@@ -2,14 +2,14 @@ import csv
 
 
 def csv_data(path):
-    all_orders = []
-    # if not path.endswith(".csv"):
-    #     raise FileNotFoundError(f"No such file or directory: '{path}'")
+    orders = []
+    if not path.endswith(".csv"):
+        raise FileNotFoundError(f"No such file or directory: '{path}'")
     with open(path) as file:
         data = csv.DictReader(file, fieldnames=['nome', 'comida', 'dia'])
         for info in data:
-            all_orders.append(info)
-    return all_orders
+            orders.append(info)
+    return orders
 
 
 def get_orders_by_client(name, orders):
@@ -58,7 +58,7 @@ def get_days_by_client(name, orders):
 
 def never_went_to(name, orders, day):
     all_days = set([data[day] for data in orders])
-    client_fav_days = set(never_went_to(name, orders))
+    client_fav_days = set(get_days_by_client(name, orders))
     return all_days.difference(client_fav_days)
 
 
