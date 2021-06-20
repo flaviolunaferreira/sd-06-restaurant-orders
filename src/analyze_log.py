@@ -26,10 +26,26 @@ def favorite_meal(name, orders):
     return max(orders_by_clients, key=orders.count)
 
 
+def get_orders_by_meal(name, orders, meal):
+    orders_by_meal = [
+        order['comida']
+        for order in orders
+        if order['nome'] == name
+        and order['comida'] == meal
+    ]
+    return orders_by_meal
+
+
+def qty_by_meal(name, orders, meal):
+    orders_by_meal = get_orders_by_meal(name, orders, meal)
+    return len(orders_by_meal)
+
+
 def analyze_log(path_to_file):
 
     all_orders = csv_data(path_to_file)
 
     asd = ""
 
-    asd += str(favorite_meal("maria", all_orders))
+    asd += str(favorite_meal("maria", all_orders)) + "\n"
+    asd += str(qty_by_meal("arnaldo", all_orders, "hamburguer")) + "\n"
