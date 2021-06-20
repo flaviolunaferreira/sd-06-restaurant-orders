@@ -41,6 +41,12 @@ def qty_by_meal(name, orders, meal):
     return len(orders_by_meal)
 
 
+def never_asked_meal(name, orders, type):
+    all_types = set([data[type] for data in orders])
+    client_fav_type = set([favorite_meal(name, orders)])
+    return all_types.difference(client_fav_type)
+
+
 def analyze_log(path_to_file):
 
     all_orders = csv_data(path_to_file)
@@ -49,3 +55,4 @@ def analyze_log(path_to_file):
 
     asd += str(favorite_meal("maria", all_orders)) + "\n"
     asd += str(qty_by_meal("arnaldo", all_orders, "hamburguer")) + "\n"
+    asd += str(never_asked_meal("joao", all_orders, "comida")) + "\n"
