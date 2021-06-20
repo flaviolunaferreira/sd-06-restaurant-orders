@@ -4,49 +4,50 @@ from collections import Counter
 
 def read_csv(path):
     with open(path, 'r') as file:
-        mycsv = csv.DictReader(file, fieldnames=("customer", "order", "day"))
-        order_dict = []
+        mycsv = csv.reader(file)
+        order_list = []
         for row in mycsv:
-            order_dict.append(row)
+            order_list.append(row)
     file.close()
-    return order_dict
+    return order_list
 
 
-def more_request(orders, customer):
+def more_request(orders, costumer):
     order_list = []
     for info in orders:
-        if (info["customer"] == customer):
-            order_list.append(info["order"])
-    more_request = Counter(order_list)
-    return [info for info in more_request][0]
+        if (info[0] == costumer):
+            order_list.append(info[1])
+    count = Counter(order_list)
+    more_ordered = sorted(count, key=count.get, reverse=True)[0]
+    return more_ordered
 
 
-def order_quantity(orders, order, customer):
+def order_quantity(orders, order, costumer):
     amount = 0
     for info in orders:
-        if (info["customer"] == customer and info["order"] == order):
+        if (info[0] == costumer and info[1] == order):
             amount += 1
-    return str(amount)
+    return amount
 
 
-def never_order(orders, customer):
+def never_order(orders, costumer):
     all_orders = set()
-    customer_orders = set()
+    costumer_orders = set()
     for info in orders:
-        all_orders.add(info["order"])
-        if (info["customer"] == customer):
-            customer_orders.add(info["order"])
-    return str(all_orders.difference(customer_orders))
+        all_orders.add(info[1])
+        if (info[0] == costumer):
+            costumer_orders.add(info[1])
+    return all_orders.difference(costumer_orders)
 
 
-def never_went(orders, customer):
+def never_went(orders, costumer):
     all_days = set()
-    customer_went = set()
+    costumer_went = set()
     for info in orders:
-        all_days.add(info["day"])
-        if (info["customer"] == customer):
-            customer_went.add(info["day"])
-    return str(all_days.difference(customer_went))
+        all_days.add(info[2])
+        if (info[0] == costumer):
+            costumer_went.add(info[2])
+    return all_days.difference(costumer_went)
 
 
 def analyze_log(path_to_file):
@@ -54,9 +55,9 @@ def analyze_log(path_to_file):
 
     result = [
         more_request(orders, "maria"),
-        order_quantity(orders, "hamburguer", "arnaldo"),
-        never_order(orders, "joao"),
-        never_went(orders, "joao")
+        str(order_quantity(orders, "hamburguer", "arnaldo")),
+        str(never_order(orders, "joao")),
+        str(never_went(orders, "joao"))
     ]
     with open("data/mkt_campaign.txt", "w") as save:
         for line in result:
