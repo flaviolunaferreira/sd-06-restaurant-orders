@@ -32,7 +32,7 @@ class TrackOrders:
         return self.most_ordered
 
     def get_order_frequency_per_costumer(self, costumer, order):
-        return costumer + "3" + order
+        pass
 
     def get_never_ordered_per_costumer(self, costumer):
         foods_oredered = set()
@@ -66,7 +66,7 @@ class TrackOrders:
         return busiest_day
 
     def get_least_busy_day(self):
-        print(self.frequency)
+        self.get_frequency()
         value, keys = list(self.frequency.values()), list(
             self.frequency.keys()
         )
