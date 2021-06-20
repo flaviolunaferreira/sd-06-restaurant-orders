@@ -19,3 +19,8 @@ def get_orders_by_client(name, orders):
         if order['nome'] == name
     ]
     return orders_by_client
+
+
+def favorite_meal(name, orders):
+    orders_by_clients = get_orders_by_client(name, orders)
+    return max(orders_by_clients, key=orders.count)
