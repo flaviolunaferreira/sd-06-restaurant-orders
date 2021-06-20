@@ -17,8 +17,7 @@ def most_frequent_order(client_name, clients_data):
         in clients_data if client['name'] == client_name
     ]
     ordered_times = Counter(client_order)
-    results = ordered_times.most_common(1)[0][0]
-    return results
+    return ordered_times.most_common(1)[0][0]
 
 
 def ordered_times(client_name, clients_data, menu_item):
@@ -52,9 +51,9 @@ def analyze_log(path_to_file):
     if path_to_file.endswith('.csv'):
         clients_data = convert_to_dict(path_to_file)
         most_frequent_maria_orders = most_frequent_order('maria', clients_data)
-        arnaldo_orders = ordered_times('arnaldo', clients_data, 'hamburger')
+        arnaldo_orders = ordered_times('arnaldo', clients_data, 'hamburguer')
         never_orderd_by_joao = never_orderd('joao', clients_data)
-        joao_s_never_show_day = never_show_day('jaoao', clients_data)
+        joao_s_never_show_day = never_show_day('joao', clients_data)
         rows = [
             f'{most_frequent_maria_orders}\n',
             f'{arnaldo_orders}\n',
@@ -67,8 +66,3 @@ def analyze_log(path_to_file):
         raise FileNotFoundError(
             f"No such file or directory: '{path_to_file}'"
         )
-
-
-if __name__ == '__main__':
-    path = 'data/orders_3.csv'
-    analyze_log(path)
