@@ -19,11 +19,14 @@ class TrackOrders:
         return Counter(ordered).most_common(1)[0][0]
 
     def get_never_ordered_per_costumer(self, costumer):
-        ordered = []
+        meals = set()
+        ordered_meals = set()
+        for i in self.orders:
+            meals.add(i[1])
         for i in self.orders:
             if i[0] == costumer:
-                ordered.append(i[1])
-        return Counter(ordered).most_common(1)[0][0]
+                ordered_meals.add(i[1])
+        return meals.difference(ordered_meals)
 
     def get_days_never_visited_per_costumer(self, costumer):
         days = set()
