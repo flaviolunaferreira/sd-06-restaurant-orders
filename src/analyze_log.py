@@ -7,7 +7,8 @@ def convert_to_dict(path_to_file):
         headers = ['name', 'order', 'day']
         result_dict = csv.DictReader(csv_file, fieldnames=headers)
         clients = []
-        return [clients.append(data_row) for data_row in result_dict]
+        [clients.append(data_row) for data_row in result_dict]
+        return clients
 
 
 def most_frequent_order(client_name, clients_data):
@@ -16,7 +17,8 @@ def most_frequent_order(client_name, clients_data):
         in clients_data if client['name'] == client_name
     ]
     ordered_times = Counter(client_order)
-    return ordered_times.most_common(1)[0][0]
+    results = ordered_times.most_common(1)[0][0]
+    return results
 
 
 def ordered_times(client_name, clients_data, menu_item):
