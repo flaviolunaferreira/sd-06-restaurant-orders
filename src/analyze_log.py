@@ -11,7 +11,6 @@ def analyze_log(path_to_file):
         campaign.write(f"{second}\n")
         campaign.write(f"{third}\n")
         campaign.write(f"{fourth}\n")
-        # raise NotImplementedError
 
 
 def maria_favorite(path_to_file):
