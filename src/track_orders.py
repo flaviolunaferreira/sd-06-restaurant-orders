@@ -33,14 +33,30 @@ class TrackOrders:
         return(full_menu.difference(ordered_by_customer))
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        full_days = self.get_full_days()
+        visited_by_customer = [
+            order[
+                "day"
+            ] for order in self.orders if order[
+                "customer"
+                ] == costumer
+            ]
+        return(full_days.difference(visited_by_customer))
 
     def get_busiest_day(self):
-        pass
+        days = [order["day"] for order in self.orders]
+        counter = Counter(days)
+        return counter.most_common(1)[0][0]
 
     def get_least_busy_day(self):
-        pass
+        days = [order["day"] for order in self.orders]
+        counter = Counter(days)
+        return counter.most_common()[-1][0]
 
     def get_full_menu(self):
         full_menu = set([order["order"] for order in self.orders])
         return(full_menu)
+
+    def get_full_days(self):
+        full_days = set([order["day"] for order in self.orders])
+        return(full_days)
