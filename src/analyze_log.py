@@ -43,3 +43,4 @@ def analyze_log(path_to_file):
         print(arnaldo_hamburgers_quantity, file=file)
         print(joao_never_ordered, file=file)
         print(joao_never_went, file=file)
+    return orders_report
